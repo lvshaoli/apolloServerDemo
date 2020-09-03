@@ -1,0 +1,29 @@
+{
+  "name": "apolloserverdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "apollo": "cross-env VUE_APP_CLI_UI_DEV=true VUE_APP_CLI_UI_DEBUG=true VUE_APP_GRAPHQL_PORT=4030 vue-cli-service apollo:dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "vue-cli-plugin-apollo": "^0.21.3",
+    "apollo-server-express": "^2.13.1",
+    "graphql-tag": "^2.10.3",
+    "graphql-type-json": "^0.3.1",
+    "@vue/cli-shared-utils": "^4.5.4",
+    "globby": "^9.2.0",
+    "lodash.merge": "^4.6.1",
+    "graphql-subscriptions": "^1.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "@vue/cli-plugin-babel": "^4.5.4",
+    "@vue/cli-service": "^4.5.4",
+    "watch": "^1.0.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
