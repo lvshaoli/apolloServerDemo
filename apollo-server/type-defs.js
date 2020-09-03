@@ -2,9 +2,29 @@ const gql = require('graphql-tag')
 const globby = require('globby')
 const typeDefs = [gql`
 scalar JSON
-type ClientAddon {
-  id: ID!
-  url: String!
+
+enum PackageManager {
+    npm
+    yarn
+    pnum
+}
+
+interface DescribedEntity {
+    name: String
+    description: String
+    link: String
+}
+
+type Version {
+ current: String
+  latest: String
+  wanted: String
+  range: String
+  localPath: String
+}
+
+type GitHubStats {
+  stars: Int
 }
 type Progress {
   id: ID!
@@ -15,10 +35,23 @@ type Progress {
   progress: Float
   args: [String]
 }
+
+input OpenInEditorInput {
+  file: String!
+  line: Int
+  column: Int
+  gitPath: Boolean
+}
+
+type ClientAddon {
+  id: ID!
+  url: String!
+}
 type SharedData {
   id: ID!
   value: JSON
 }
+
 type Locale {
   lang: String!
   strings: JSON!
@@ -32,7 +65,19 @@ type Query {
   locales: [Locale]
 }
 
-
+type Mutation {
+  fileOpenInEditor (input: OpenInEditorInput!): Boolean
+  sharedDataUpdate (id: ID!, projectId: ID!, value: JSON!): SharedData
+}
+type Subscription {
+  progressChanged (id: ID!): Progress
+  progressRemoved (id: ID!): ID
+  cwdChanged: String!
+  clientAddonAdded: ClientAddon
+  sharedDataUpdated (id: ID!, projectId: ID!): SharedData
+  localeAdded: Locale
+  routeRequested: JSON!
+}
 `]
 // Load types in './schema'
 const paths = globby.sync(['./schema/*.js'], { cwd: __dirname, absolute: true })
