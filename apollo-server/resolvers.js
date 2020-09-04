@@ -3,6 +3,9 @@ const { GraphQLJSON } = require('graphql-type-json')
 const merge = require('lodash.merge')
 // Connectors
 const cwd = require('./connectors/cwd')
+const progress = require('./connectors/progress')
+const clientAddons = require('./connectors/client-addons')
+const sharedData = require('./connectors/shared-data')
 resolvers = [
     {
         JSON: GraphQLJSON,
@@ -12,19 +15,13 @@ resolvers = [
             }
         },
         ClientAddon: {
-            url: (addon, args, context) => ''
+            url: (addon, args, context) => clientAddons.getUrl(addon, context)
         },
         Query: {
             cwd: () => cwd.get(),
-            progress: (root, { id }, context) => {
-                return {
-                    status: '1',
-                    info: '2',
-                    error: '33',
-                    progress: '0.1',
-                    args: ['2']
-                }
-            }
+            progress: (root, {id}, context) => progress.get(id, context),
+            clientAddons: (root, args, context) => clientAddons.list(context),
+            sharedData: (root, args, context) => sharedData.get(args, context)
         }
     }
 ]
