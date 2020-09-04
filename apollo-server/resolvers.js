@@ -6,6 +6,7 @@ const cwd = require('./connectors/cwd')
 const progress = require('./connectors/progress')
 const clientAddons = require('./connectors/client-addons')
 const sharedData = require('./connectors/shared-data')
+const locales = require('./connectors/locales')
 resolvers = [
     {
         JSON: GraphQLJSON,
@@ -21,7 +22,8 @@ resolvers = [
             cwd: () => cwd.get(),
             progress: (root, {id}, context) => progress.get(id, context),
             clientAddons: (root, args, context) => clientAddons.list(context),
-            sharedData: (root, args, context) => sharedData.get(args, context)
+            sharedData: (root, args, context) => sharedData.get(args, context),
+            locales: (root, args, context) => locales.list(context)
         }
     }
 ]
