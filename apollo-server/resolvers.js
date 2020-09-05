@@ -24,6 +24,9 @@ resolvers = [
             clientAddons: (root, args, context) => clientAddons.list(context),
             sharedData: (root, args, context) => sharedData.get(args, context),
             locales: (root, args, context) => locales.list(context)
+        },
+        Mutation: {
+            fileOpenInEditor: (root, { input }, context) => ''
         }
     }
 ]

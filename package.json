@@ -22,7 +22,8 @@
     "graphql-subscriptions": "^1.1.0",
     "fs-extra": "^7.0.1",
     "deepmerge": "^4.2.2",
-    "lowdb": "^1.0.0"
+    "lowdb": "^1.0.0",
+    "prismjs": "^1.21.0"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
