@@ -23,7 +23,8 @@
     "fs-extra": "^7.0.1",
     "deepmerge": "^4.2.2",
     "lowdb": "^1.0.0",
-    "prismjs": "^1.21.0"
+    "prismjs": "^1.21.0",
+    "shortid": "^2.2.15"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",

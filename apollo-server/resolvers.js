@@ -7,6 +7,7 @@ const progress = require('./connectors/progress')
 const clientAddons = require('./connectors/client-addons')
 const sharedData = require('./connectors/shared-data')
 const locales = require('./connectors/locales')
+const files = require('./connectors/files')
 resolvers = [
     {
         JSON: GraphQLJSON,
@@ -26,7 +27,7 @@ resolvers = [
             locales: (root, args, context) => locales.list(context)
         },
         Mutation: {
-            fileOpenInEditor: (root, { input }, context) => ''
+            fileOpenInEditor: (root, { input }, context) => files.openInEditor(input, context)
         }
     }
 ]
